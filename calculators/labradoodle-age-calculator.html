@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert your Labradoodle's age to human years with our free online calculator.">
+    <meta property="og:title" content="Labradoodle Age Calculator - Dog Years to Human Years">
+    <meta property="og:description" content="Convert your Labradoodle's age to human years with our free online calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/calculators/labradoodle-age-calculator.html">
+    <title>Labradoodle Age Calculator - Dog Years to Human Years</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Calculator Tools</h1>
+                </a>
+            </div>
+            <nav>
+                <button id="menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="main-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#games">Games</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+                <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="calculator-page">
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-header">
+                        <h2>Labradoodle Age Calculator</h2>
+                        <p>Convert your Labradoodle's age to human years</p>
+                    </div>
+                    
+                    <form id="labradoodle-age-calculator-form" class="calculator-form">
+                        <div class="form-group">
+                            <label for="labradoodle-age">Labradoodle's Age in Years</label>
+                            <input type="number" id="labradoodle-age" class="form-control" min="0.1" step="0.1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="labradoodle-size">Labradoodle's Size</label>
+                            <select id="labradoodle-size" class="form-control" required>
+                                <option value="">Select Labradoodle Size</option>
+                                <option value="miniature">Miniature (15-30 lbs)</option>
+                                <option value="medium">Medium (30-45 lbs)</option>
+                                <option value="standard">Standard (45-65+ lbs)</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn">Calculate Human Age</button>
+                    </form>
+                    
+                    <div id="labradoodle-age-result" class="calculator-result" style="display: none;">
+                        <h3 class="result-heading">Your Labradoodle's Human Age</h3>
+                        <div id="labradoodle-age-value" class="result-value"></div>
+                        <p id="labradoodle-age-description" class="result-description"></p>
+                    </div>
+                    
+                    <div class="calculator-info" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                        <h3>About Labradoodle Age Calculator</h3>
+                        <p>The Labradoodle Age Calculator converts your Labradoodle's age to human years using a specialized formula for this popular crossbreed.</p>
+                        
+                        <h4>How it works:</h4>
+                        <ol>
+                            <li>Enter your Labradoodle's age in years (decimals allowed for puppies)</li>
+                            <li>Select your Labradoodle's size (miniature, medium, or standard)</li>
+                            <li>Click "Calculate Human Age" to see the results</li>
+                        </ol>
+                        
+                        <h4>Why Labradoodles need a special calculator:</h4>
+                        <p>As a cross between Labrador Retrievers and Poodles, Labradoodles have unique aging patterns:</p>
+                        <ul>
+                            <li>Their aging rate is influenced by both parent breeds</li>
+                            <li>Size significantly impacts how quickly they age</li>
+                            <li>Miniature Labradoodles tend to live longer than standard ones</li>
+                            <li>They experience rapid development in their first two years</li>
+                        </ul>
+                        
+                        <h4>Labradoodle size categories:</h4>
+                        <ul>
+                            <li><strong>Miniature:</strong> 15-30 pounds (typically from Miniature Poodle parentage)</li>
+                            <li><strong>Medium:</strong> 30-45 pounds (typically from Medium Poodle parentage)</li>
+                            <li><strong>Standard:</strong> 45-65+ pounds (typically from Standard Poodle parentage)</li>
+                        </ul>
+                        
+                        <p>Understanding your Labradoodle's equivalent human age can help you provide appropriate care, nutrition, and activity levels as they grow and mature.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Calculator Tools. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/dark-mode.js"></script>
+    <script src="../js/calculators/labradoodle-age-calculator.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

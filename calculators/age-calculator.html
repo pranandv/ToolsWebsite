@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate your exact age in years, months, and days with our free online age calculator. Fast, accurate, and easy to use.">
+    <meta name="keywords" content="age calculator, calculate age, age in years months days, date of birth calculator, exact age calculator, free age calculator">
+    <meta name="author" content="Calculator Tools">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Age Calculator - Free Online Tool to Calculate Exact Age">
+    <meta property="og:description" content="Calculate your exact age in years, months, and days with our free online age calculator. Fast, accurate, and easy to use.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://calculatortools.com/calculators/age-calculator.html">
+    <meta property="og:image" content="https://calculatortools.com/images/age-calculator-og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://calculatortools.com/calculators/age-calculator.html">
+    <title>Age Calculator - Calculate Your Exact Age in Years, Months, and Days</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebApplication",
+        "name": "Age Calculator",
+        "url": "https://calculatortools.com/calculators/age-calculator.html",
+        "description": "Calculate your exact age in years, months, and days with our free online age calculator.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "All",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Calculator Tools</h1>
+                </a>
+            </div>
+            <nav>
+                <button id="menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="main-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#games">Games</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+                <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="calculator-page">
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-header">
+                        <h2>Age Calculator</h2>
+                        <p>Calculate your exact age in years, months, and days</p>
+                    </div>
+                    
+                    <form id="age-calculator-form" class="calculator-form">
+                        <div class="form-group">
+                            <label for="birth-date">Date of Birth</label>
+                            <input type="date" id="birth-date" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="calculation-date">Calculate Age As Of (leave blank for today)</label>
+                            <input type="date" id="calculation-date" class="form-control">
+                        </div>
+                        
+                        <button type="submit" class="btn">Calculate Age</button>
+                    </form>
+                    
+                    <div id="age-result" class="calculator-result" style="display: none;">
+                        <h3 class="result-heading">Your Age</h3>
+                        <div id="age-value" class="result-value"></div>
+                        <p id="age-description" class="result-description"></p>
+                    </div>
+                    
+                    <div class="calculator-info" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                        <h3>About Age Calculator</h3>
+                        <p>The Age Calculator is a simple tool that computes your exact age in years, months, and days based on your date of birth.</p>
+                        
+                        <h4>How it works:</h4>
+                        <ol>
+                            <li>Enter your date of birth using the calendar picker</li>
+                            <li>Optionally, select a specific calculation date (defaults to today)</li>
+                            <li>Click "Calculate Age" to see the results</li>
+                        </ol>
+                        
+                        <h4>What you'll learn:</h4>
+                        <ul>
+                            <li>Your precise age in years, months, and days</li>
+                            <li>Fun facts about your age</li>
+                            <li>How many days you've been alive</li>
+                            <li>Upcoming milestone birthdays</li>
+                        </ul>
+                        
+                        <h4>Common uses:</h4>
+                        <ul>
+                            <li>Calculate exact age for official documents</li>
+                            <li>Determine eligibility for age-restricted activities</li>
+                            <li>Plan milestone birthday celebrations</li>
+                            <li>Calculate age at a future date (like retirement)</li>
+                            <li>Determine exact age difference between two people</li>
+                        </ul>
+                        
+                        <p>The Age Calculator takes into account leap years and varying month lengths to provide an accurate calculation of your age.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Calculator Tools. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/dark-mode.js"></script>
+    <script src="../js/calculators/age-calculator.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

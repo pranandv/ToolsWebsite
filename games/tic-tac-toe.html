@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play the classic Tic Tac Toe game online for free. Play against the computer or with a friend.">
+    <meta property="og:title" content="Tic Tac Toe - Free Online Game">
+    <meta property="og:description" content="Play the classic Tic Tac Toe game online for free. Play against the computer or with a friend.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/games/tic-tac-toe.html">
+    <title>Tic Tac Toe - Free Online Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+    <style>
+        .game-container {
+            max-width: 350px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .cell {
+            aspect-ratio: 1/1;
+            background-color: var(--bg-light);
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+        
+        .cell:hover {
+            background-color: var(--bg-hover);
+        }
+        
+        .cell.x {
+            color: #e74c3c;
+        }
+        
+        .cell.o {
+            color: #3498db;
+        }
+        
+        .game-info {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .game-mode-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .mode-btn {
+            background-color: var(--bg-light);
+            border: 2px solid var(--border-color);
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .mode-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 15px;
+        }
+        
+        .score-item {
+            text-align: center;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: var(--bg-light);
+            min-width: 80px;
+        }
+        
+        .score-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Calculator Tools</h1>
+                </a>
+            </div>
+            <nav>
+                <button id="menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="main-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#games">Games</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+                <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="calculator-page">
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-header">
+                        <h2>Tic Tac Toe</h2>
+                        <p>The classic game of X's and O's</p>
+                    </div>
+                    
+                    <div class="game-container">
+                        <div class="game-mode-selector">
+                            <button class="mode-btn active" data-mode="easy">Easy AI</button>
+                            <button class="mode-btn" data-mode="hard">Hard AI</button>
+                            <button class="mode-btn" data-mode="two-player">2 Players</button>
+                        </div>
+                        
+                        <div class="score-board">
+                            <div class="score-item">
+                                <div>X</div>
+                                <div class="score-value" id="x-score">0</div>
+                            </div>
+                            <div class="score-item">
+                                <div>Ties</div>
+                                <div class="score-value" id="ties">0</div>
+                            </div>
+                            <div class="score-item">
+                                <div>O</div>
+                                <div class="score-value" id="o-score">0</div>
+                            </div>
+                        </div>
+                        
+                        <div class="game-info" id="game-info">X's turn</div>
+                        
+                        <div class="game-board" id="game-board">
+                            <div class="cell" data-index="0"></div>
+                            <div class="cell" data-index="1"></div>
+                            <div class="cell" data-index="2"></div>
+                            <div class="cell" data-index="3"></div>
+                            <div class="cell" data-index="4"></div>
+                            <div class="cell" data-index="5"></div>
+                            <div class="cell" data-index="6"></div>
+                            <div class="cell" data-index="7"></div>
+                            <div class="cell" data-index="8"></div>
+                        </div>
+                        
+                        <div class="game-controls">
+                            <button id="new-game-btn" class="btn">New Game</button>
+                            <button id="reset-score-btn" class="btn">Reset Score</button>
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-info" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                        <h3>About Tic Tac Toe</h3>
+                        <p>Tic Tac Toe is a classic paper-and-pencil game for two players who take turns marking X or O in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.</p>
+                        
+                        <h4>How to play:</h4>
+                        <ol>
+                            <li>Select a game mode: Easy AI, Hard AI, or Two Players</li>
+                            <li>X always goes first (this is you in AI mode)</li>
+                            <li>Players take turns placing their symbols (X or O) on empty cells</li>
+                            <li>The first player to get 3 of their marks in a row (horizontally, vertically, or diagonally) wins</li>
+                            <li>If all cells are filled and no one has won, the game is a tie</li>
+                        </ol>
+                        
+                        <h4>Game Modes:</h4>
+                        <ul>
+                            <li><strong>Easy AI:</strong> Computer makes random moves</li>
+                            <li><strong>Hard AI:</strong> Computer uses strategy to make optimal moves</li>
+                            <li><strong>Two Players:</strong> Play against a friend on the same device</li>
+                        </ul>
+                        
+                        <h4>Strategy tips:</h4>
+                        <ul>
+                            <li>Try to take the center square early if possible</li>
+                            <li>Block your opponent when they have two in a row</li>
+                            <li>Create "forks" where you have two potential winning moves</li>
+                            <li>Watch for diagonal opportunities that are easy to miss</li>
+                        </ul>
+                        
+                        <p>Despite its simple rules, Tic Tac Toe offers valuable lessons in strategic thinking and planning ahead, making it a timeless game enjoyed by people of all ages.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Calculator Tools. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/dark-mode.js"></script>
+    <script src="../js/games/tic-tac-toe.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

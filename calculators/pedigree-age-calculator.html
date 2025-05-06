@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert your dog's age to human years with our free online pedigree age calculator.">
+    <meta property="og:title" content="Pedigree Age Calculator - Dog Years to Human Years">
+    <meta property="og:description" content="Convert your dog's age to human years with our free online pedigree age calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/calculators/pedigree-age-calculator.html">
+    <title>Pedigree Age Calculator - Dog Years to Human Years</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Calculator Tools</h1>
+                </a>
+            </div>
+            <nav>
+                <button id="menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="main-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#games">Games</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+                <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="calculator-page">
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-header">
+                        <h2>Pedigree Age Calculator</h2>
+                        <p>Convert your dog's age to human years</p>
+                    </div>
+                    
+                    <form id="pedigree-age-calculator-form" class="calculator-form">
+                        <div class="form-group">
+                            <label for="dog-age">Dog's Age in Years</label>
+                            <input type="number" id="dog-age" class="form-control" min="0.1" step="0.1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dog-size">Dog's Size</label>
+                            <select id="dog-size" class="form-control" required>
+                                <option value="">Select Dog Size</option>
+                                <option value="small">Small (up to 20 lbs)</option>
+                                <option value="medium">Medium (21-50 lbs)</option>
+                                <option value="large">Large (51-100 lbs)</option>
+                                <option value="giant">Giant (over 100 lbs)</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn">Calculate Human Age</button>
+                    </form>
+                    
+                    <div id="pedigree-age-result" class="calculator-result" style="display: none;">
+                        <h3 class="result-heading">Your Dog's Human Age</h3>
+                        <div id="pedigree-age-value" class="result-value"></div>
+                        <p id="pedigree-age-description" class="result-description"></p>
+                    </div>
+                    
+                    <div class="calculator-info" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                        <h3>About Pedigree Age Calculator</h3>
+                        <p>The Pedigree Age Calculator converts your dog's age to human years using a more accurate method than the old "multiply by 7" rule.</p>
+                        
+                        <h4>How it works:</h4>
+                        <ol>
+                            <li>Enter your dog's age in years (decimals allowed for puppies)</li>
+                            <li>Select your dog's size category</li>
+                            <li>Click "Calculate Human Age" to see the results</li>
+                        </ol>
+                        
+                        <h4>The science behind the calculation:</h4>
+                        <p>This calculator uses a more accurate aging method that accounts for:</p>
+                        <ul>
+                            <li>Dogs age faster during their first two years of life</li>
+                            <li>Different sized dogs age at different rates</li>
+                            <li>Small dogs generally live longer than large dogs</li>
+                            <li>Giant breeds tend to age more rapidly after adulthood</li>
+                        </ul>
+                        
+                        <h4>Dog size categories:</h4>
+                        <ul>
+                            <li><strong>Small:</strong> Up to 20 pounds (Chihuahua, Yorkshire Terrier, Pomeranian)</li>
+                            <li><strong>Medium:</strong> 21-50 pounds (Beagle, Cocker Spaniel, Border Collie)</li>
+                            <li><strong>Large:</strong> 51-100 pounds (Labrador, German Shepherd, Boxer)</li>
+                            <li><strong>Giant:</strong> Over 100 pounds (Great Dane, Saint Bernard, Newfoundland)</li>
+                        </ul>
+                        
+                        <p>Understanding your dog's age in human terms can help you better anticipate their changing needs as they grow and age.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Calculator Tools. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/dark-mode.js"></script>
+    <script src="../js/calculators/pedigree-age-calculator.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

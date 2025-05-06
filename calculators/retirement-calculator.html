@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plan your retirement and calculate your retirement age with our free online calculator.">
+    <meta property="og:title" content="Retirement Age Calculator - Free Online Tool">
+    <meta property="og:description" content="Plan your retirement and calculate your retirement age with our free online calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/calculators/retirement-calculator.html">
+    <title>Retirement Age Calculator - Plan Your Retirement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Calculator Tools</h1>
+                </a>
+            </div>
+            <nav>
+                <button id="menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="main-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#games">Games</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+                <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="calculator-page">
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-header">
+                        <h2>Retirement Age Calculator</h2>
+                        <p>Plan your retirement and calculate your retirement age</p>
+                    </div>
+                    
+                    <form id="retirement-calculator-form" class="calculator-form">
+                        <div class="form-group">
+                            <label for="current-age">Current Age</label>
+                            <input type="number" id="current-age" class="form-control" min="18" max="100" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="current-savings">Current Retirement Savings ($)</label>
+                            <input type="number" id="current-savings" class="form-control" min="0" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="monthly-contribution">Monthly Contribution ($)</label>
+                            <input type="number" id="monthly-contribution" class="form-control" min="0" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="annual-return">Expected Annual Return (%)</label>
+                            <input type="number" id="annual-return" class="form-control" min="0" max="20" step="0.1" value="7" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="retirement-goal">Retirement Savings Goal ($)</label>
+                            <input type="number" id="retirement-goal" class="form-control" min="0" required>
+                        </div>
+                        
+                        <button type="submit" class="btn">Calculate Retirement Age</button>
+                    </form>
+                    
+                    <div id="retirement-result" class="calculator-result" style="display: none;">
+                        <h3 class="result-heading">Your Retirement Projection</h3>
+                        <div id="retirement-value" class="result-value"></div>
+                        <p id="retirement-description" class="result-description"></p>
+                    </div>
+                    
+                    <div class="calculator-info" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                        <h3>About Retirement Age Calculator</h3>
+                        <p>The Retirement Age Calculator helps you plan for your financial future by projecting when you'll reach your retirement savings goal.</p>
+                        
+                        <h4>How it works:</h4>
+                        <ol>
+                            <li>Enter your current age</li>
+                            <li>Input your current retirement savings</li>
+                            <li>Specify your monthly contribution amount</li>
+                            <li>Set your expected annual return rate (default is 7%)</li>
+                            <li>Enter your retirement savings goal</li>
+                            <li>Click "Calculate Retirement Age" to see your projection</li>
+                        </ol>
+                        
+                        <h4>Understanding the results:</h4>
+                        <ul>
+                            <li>The calculator shows at what age you'll reach your retirement goal</li>
+                            <li>It displays how your contributions and investment returns grow over time</li>
+                            <li>You can see the total amount contributed versus interest earned</li>
+                            <li>If the goal isn't reachable by age 100, the calculator will let you know</li>
+                        </ul>
+                        
+                        <p>Remember that this calculator provides estimates based on consistent contributions and steady returns. Actual results may vary due to market fluctuations, changes in contribution amounts, and other factors. It's always advisable to consult with a financial advisor for personalized retirement planning.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Calculator Tools. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/dark-mode.js"></script>
+    <script src="../js/calculators/retirement-calculator.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

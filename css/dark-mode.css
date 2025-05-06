@@ -1,0 +1,67 @@
+/* Dark Mode Styles */
+body.dark-mode {
+    --text-color: #f1f1f1;
+    --text-light: #b0b0b0;
+    --bg-color: #1a1a1a;
+    --bg-alt: #2a2a2a;
+    --border-color: #444;
+    --shadow: rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .logo h1,
+body.dark-mode #main-menu a,
+body.dark-mode #menu-toggle,
+body.dark-mode #dark-mode-toggle {
+    color: var(--text-color);
+}
+
+body.dark-mode #dark-mode-toggle i.fa-moon {
+    display: none;
+}
+
+body.dark-mode #dark-mode-toggle i.fa-sun {
+    display: inline-block;
+}
+
+body.dark-mode #main-menu a:hover,
+body.dark-mode #main-menu a.active {
+    color: var(--primary-color);
+}
+
+body.dark-mode .tool-card,
+body.dark-mode .calculator-container,
+body.dark-mode .form-control,
+body.dark-mode .history-item {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+body.dark-mode .form-control {
+    border-color: var(--border-color);
+}
+
+body.dark-mode .form-control:focus {
+    border-color: var(--primary-color);
+}
+
+body.dark-mode .calculator-result {
+    background-color: var(--bg-alt);
+}
+
+/* Transition for smooth toggle */
+body, 
+body .tool-card, 
+body .calculator-container, 
+body .form-control, 
+body .history-item,
+body #main-menu,
+body #dark-mode-toggle,
+body header,
+body footer,
+body .calculator-result {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+#dark-mode-toggle i.fa-sun {
+    display: none;
+}

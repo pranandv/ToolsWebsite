@@ -1,0 +1,527 @@
+/* Reset and Base Styles */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --accent-color: #e74c3c;
+    --text-color: #333;
+    --text-light: #767676;
+    --bg-color: #fff;
+    --bg-alt: #f9f9f9;
+    --border-color: #e1e1e1;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    --border-radius: 8px;
+    --container-width: 1200px;
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: var(--transition);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: darken(var(--primary-color), 10%);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 3.2rem;
+}
+
+h2 {
+    font-size: 2.8rem;
+}
+
+h3 {
+    font-size: 2.4rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--bg-color);
+    box-shadow: 0 2px 10px var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+}
+
+.logo h1 {
+    font-size: 2.4rem;
+    margin-bottom: 0;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+#menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+#main-menu {
+    display: flex;
+}
+
+#main-menu li {
+    margin-left: 2rem;
+}
+
+#main-menu a {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+#main-menu a:hover, 
+#main-menu a.active {
+    color: var(--primary-color);
+}
+
+#dark-mode-toggle {
+    margin-left: 2rem;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+/* Hero Section */
+.hero {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 3.6rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 2rem;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+/* Tools Section */
+.tools-section {
+    padding: 5rem 0;
+}
+
+.tools-section h2 {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
+    gap: 3rem;
+}
+
+.tool-card {
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px var(--shadow);
+    padding: 2.5rem;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--shadow);
+}
+
+.tool-icon {
+    font-size: 3.6rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.tool-card h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.tool-card p {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.btn:hover {
+    background-color: darken(var(--primary-color), 10%);
+    color: white;
+}
+
+/* Recently Used Tools */
+.recent-tools {
+    background-color: var(--bg-alt);
+    padding: 5rem 0;
+}
+
+.recent-tools h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.history-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.history-item {
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 3px 10px var(--shadow);
+    padding: 1.5rem;
+    flex: 0 0 calc(33.333% - 2rem);
+    min-width: 25rem;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.history-item:hover {
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+.history-icon {
+    font-size: 2.4rem;
+    color: var(--primary-color);
+    margin-right: 1.5rem;
+}
+
+.history-details h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.history-details p {
+    font-size: 1.4rem;
+    color: var(--text-light);
+    margin-bottom: 0;
+}
+
+.empty-history {
+    text-align: center;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* About and Contact Sections */
+.about-section, .contact-section {
+    padding: 5rem 0;
+}
+
+.about-section h2, .contact-section h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.about-section p, .contact-section p {
+    max-width: 80rem;
+    margin: 0 auto 2rem;
+    text-align: center;
+}
+
+/* Calculator Pages */
+.calculator-page {
+    padding: 5rem 0;
+}
+
+.calculator-container {
+    max-width: 70rem;
+    margin: 0 auto;
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px var(--shadow);
+    padding: 3rem;
+}
+
+.calculator-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.calculator-header h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.calculator-header p {
+    color: var(--text-light);
+}
+
+.calculator-form {
+    margin-bottom: 3rem;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 1.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.calculator-result {
+    background-color: var(--bg-alt);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    margin-top: 2.5rem;
+}
+
+.result-heading {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.result-value {
+    font-size: 3.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.result-description {
+    text-align: center;
+    color: var(--text-color);
+}
+
+/* Footer */
+footer {
+    background-color: var(--bg-alt);
+    padding: 3rem 0;
+    margin-top: 5rem;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+footer p {
+    margin-bottom: 0;
+}
+
+.footer-links a {
+    margin-left: 2rem;
+    color: var(--text-color);
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    html {
+        font-size: 60%;
+    }
+
+    .tools-grid {
+        grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+    }
+
+    .history-item {
+        flex: 0 0 calc(50% - 2rem);
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 58%;
+    }
+
+    #menu-toggle {
+        display: block;
+    }
+
+    #main-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-color);
+        box-shadow: 0 5px 10px var(--shadow);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        display: none;
+    }
+
+    #main-menu.active {
+        display: flex;
+    }
+
+    #main-menu li {
+        margin: 1rem 0;
+    }
+
+    .history-item {
+        flex: 0 0 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    html {
+        font-size: 56%;
+    }
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h2 {
+        font-size: 3rem;
+    }
+
+    .hero p {
+        font-size: 1.8rem;
+    }
+
+    .calculator-container {
+        padding: 2rem;
+    }
+}
+
+/* Animations */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Interactive Tools Styles */
+.quick-tool {
+    transition: var(--transition);
+}
+
+.quick-tool:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 3px 10px var(--shadow);
+}
+
+.quick-tool input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+#random-result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 38px;
+}

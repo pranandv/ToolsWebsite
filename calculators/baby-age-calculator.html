@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert your baby's age from weeks to months with our free online baby age calculator.">
+    <meta property="og:title" content="Baby Age Calculator - Weeks to Months Converter">
+    <meta property="og:description" content="Convert your baby's age from weeks to months with our free online baby age calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/calculators/baby-age-calculator.html">
+    <title>Baby Age Calculator - Weeks to Months Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Calculator Tools</h1>
+                </a>
+            </div>
+            <nav>
+                <button id="menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="main-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#games">Games</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+                <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="calculator-page">
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-header">
+                        <h2>Baby Age Calculator</h2>
+                        <p>Convert your baby's age from weeks to months</p>
+                    </div>
+                    
+                    <form id="baby-age-calculator-form" class="calculator-form">
+                        <div class="form-group">
+                            <label for="baby-birthdate">Baby's Date of Birth</label>
+                            <input type="date" id="baby-birthdate" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="calculation-date">Calculate Age As Of (leave blank for today)</label>
+                            <input type="date" id="calculation-date" class="form-control">
+                        </div>
+                        
+                        <button type="submit" class="btn">Calculate Baby's Age</button>
+                    </form>
+                    
+                    <div id="baby-age-result" class="calculator-result" style="display: none;">
+                        <h3 class="result-heading">Your Baby's Age</h3>
+                        <div id="baby-age-value" class="result-value"></div>
+                        <p id="baby-age-description" class="result-description"></p>
+                        
+                        <div id="baby-age-details" class="result-details" style="margin-top: 20px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span>Months:</span>
+                                <span id="baby-months"></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span>Weeks:</span>
+                                <span id="baby-weeks"></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span>Days:</span>
+                                <span id="baby-days"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-info" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                        <h3>About Baby Age Calculator</h3>
+                        <p>The Baby Age Calculator helps parents track their baby's age in different units including months, weeks, and days.</p>
+                        
+                        <h4>How it works:</h4>
+                        <ol>
+                            <li>Enter your baby's date of birth</li>
+                            <li>Optionally, select a calculation date (defaults to today)</li>
+                            <li>Click "Calculate Baby's Age" to see the results</li>
+                            <li>View your baby's age in multiple formats</li>
+                        </ol>
+                        
+                        <h4>Why use this calculator:</h4>
+                        <ul>
+                            <li>Track your baby's development milestones accurately</li>
+                            <li>Convert between weeks and months for medical appointments</li>
+                            <li>Share your baby's exact age with family and friends</li>
+                            <li>Record growth progress for baby books and journals</li>
+                        </ul>
+                        
+                        <p>The first two years of a baby's life are full of rapid changes, and many parents prefer to track age in weeks or months rather than years. This calculator makes it easy to know exactly how old your little one is in whatever unit you need.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Calculator Tools. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/dark-mode.js"></script>
+    <script src="../js/calculators/baby-age-calculator.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

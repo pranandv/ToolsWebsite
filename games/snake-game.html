@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play the classic Snake game online for free. Control a snake, eat food, and grow longer without hitting the walls or yourself.">
+    <meta property="og:title" content="Snake Game - Free Online Game">
+    <meta property="og:description" content="Play the classic Snake game online for free. Control a snake, eat food, and grow longer without hitting the walls or yourself.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/games/snake-game.html">
+    <title>Snake Game - Free Online Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+    <style>
+        #game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        
+        #game-board {
+            width: 400px;
+            height: 400px;
+            border: 2px solid var(--border-color);
+            background-color: var(--bg-light);
+            position: relative;
+        }
+        
+        @media (max-width: 500px) {
+            #game-board {
+                width: 300px;
+                height: 300px;
+            }
+        }
+        
+        .snake {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .food {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #e74c3c;
+            border-radius: 50%;
+        }
+        
+        #score-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        #game-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        #mobile-controls {
+            display: none;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 5px;
+            margin-top: 15px;
+            width: 150px;
+            height: 150px;
+        }
+        
+        .control-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        #up-btn {
+            grid-column: 2;
+            grid-row: 1;
+        }
+        
+        #left-btn {
+            grid-column: 1;
+            grid-row: 2;
+        }
+        
+        #right-btn {
+            grid-column: 3;
+            grid-row: 2;
+        }
+        
+        #down-btn {
+            grid-column: 2;
+            grid-row: 3;
+        }
+        
+        @media (max-width: 768px) {
+            #mobile-controls {
+                display: grid;
+            }
+        }
+        
+        #game-over {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Calculator Tools</h1>
+                </a>
+            </div>
+            <nav>
+                <button id="menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="main-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#games">Games</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+                <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="calculator-page">
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-header">
+                        <h2>Snake Game</h2>
+                        <p>Control the snake, eat food, and avoid hitting the walls or yourself</p>
+                    </div>
+                    
+                    <div id="game-container">
+                        <div id="score-container">
+                            <div>Score: <span id="score">0</span></div>
+                            <div>High Score: <span id="high-score">0</span></div>
+                        </div>
+                        
+                        <div id="game-board">
+                            <div id="game-over">
+                                <h3>Game Over!</h3>
+                                <p>Your score: <span id="final-score">0</span></p>
+                                <button id="restart-btn" class="btn">Play Again</button>
+                            </div>
+                        </div>
+                        
+                        <div id="game-controls">
+                            <button id="start-btn" class="btn">Start Game</button>
+                            <button id="pause-btn" class="btn" disabled>Pause</button>
+                        </div>
+                        
+                        <div id="mobile-controls">
+                            <button id="up-btn" class="control-btn"><i class="fas fa-arrow-up"></i></button>
+                            <button id="left-btn" class="control-btn"><i class="fas fa-arrow-left"></i></button>
+                            <button id="right-btn" class="control-btn"><i class="fas fa-arrow-right"></i></button>
+                            <button id="down-btn" class="control-btn"><i class="fas fa-arrow-down"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-info" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                        <h3>About Snake Game</h3>
+                        <p>Snake is one of the most iconic video games ever created, first appearing in arcades in the late 1970s and becoming widely popular on Nokia mobile phones in the 1990s.</p>
+                        
+                        <h4>How to play:</h4>
+                        <ol>
+                            <li>Use the arrow keys on your keyboard (or the on-screen controls on mobile) to move the snake</li>
+                            <li>Eat the red food to grow longer and earn points</li>
+                            <li>Avoid hitting the walls or running into your own tail</li>
+                            <li>Try to achieve the highest score possible</li>
+                        </ol>
+                        
+                        <h4>Controls:</h4>
+                        <ul>
+                            <li><strong>Desktop:</strong> Arrow keys (←, →, ↑, ↓)</li>
+                            <li><strong>Mobile:</strong> On-screen arrow buttons</li>
+                            <li>Start/Pause buttons to control the game</li>
+                        </ul>
+                        
+                        <p>Snake is not just fun—it's also a great way to improve your reflexes, spatial awareness, and strategic thinking. How long can you make your snake grow?</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Calculator Tools. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/dark-mode.js"></script>
+    <script src="../js/games/snake-game.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

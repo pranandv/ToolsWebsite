@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate your Equated Monthly Installment (EMI) for loans with our free online EMI calculator.">
+    <meta property="og:title" content="EMI Calculator - Calculate Loan Monthly Payments">
+    <meta property="og:description" content="Calculate your Equated Monthly Installment (EMI) for loans with our free online EMI calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/calculators/emi-calculator.html">
+    <title>EMI Calculator - Calculate Loan Monthly Payments</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Calculator Tools</h1>
+                </a>
+            </div>
+            <nav>
+                <button id="menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="main-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#games">Games</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+                <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="calculator-page">
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-header">
+                        <h2>EMI Calculator</h2>
+                        <p>Calculate your Equated Monthly Installment for loans</p>
+                    </div>
+                    
+                    <form id="emi-calculator-form" class="calculator-form">
+                        <div class="form-group">
+                            <label for="loan-amount">Loan Amount</label>
+                            <input type="number" id="loan-amount" class="form-control" min="1000" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="interest-rate">Interest Rate (% per annum)</label>
+                            <input type="number" id="interest-rate" class="form-control" min="0.1" max="50" step="0.1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="loan-tenure">Loan Tenure</label>
+                            <div style="display: flex; gap: 15px;">
+                                <div style="flex: 1;">
+                                    <input type="number" id="loan-tenure" class="form-control" min="1" max="360" required>
+                                </div>
+                                <div style="width: 120px;">
+                                    <select id="tenure-type" class="form-control">
+                                        <option value="months">Months</option>
+                                        <option value="years">Years</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn">Calculate EMI</button>
+                    </form>
+                    
+                    <div id="emi-result" class="calculator-result" style="display: none;">
+                        <h3 class="result-heading">Your EMI Details</h3>
+                        <div id="emi-value" class="result-value"></div>
+                        
+                        <div id="emi-details" style="margin-top: 30px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color);">
+                                <span>Loan Amount:</span>
+                                <span id="emi-loan-amount"></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color);">
+                                <span>Total Interest:</span>
+                                <span id="emi-total-interest"></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color);">
+                                <span>Total Amount:</span>
+                                <span id="emi-total-amount"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-info" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                        <h3>About EMI Calculator</h3>
+                        <p>The EMI (Equated Monthly Installment) Calculator helps you determine the monthly payment amount for loans such as home loans, car loans, personal loans, and more.</p>
+                        
+                        <h4>How it works:</h4>
+                        <ol>
+                            <li>Enter the loan amount you wish to borrow</li>
+                            <li>Specify the annual interest rate</li>
+                            <li>Set the loan tenure in months or years</li>
+                            <li>Click "Calculate EMI" to see your monthly payment and other details</li>
+                        </ol>
+                        
+                        <h4>What you'll learn:</h4>
+                        <ul>
+                            <li>Your fixed monthly payment amount (EMI)</li>
+                            <li>Total interest paid over the loan tenure</li>
+                            <li>Total amount (principal + interest) to be repaid</li>
+                            <li>Breakdown of payment structure</li>
+                        </ul>
+                        
+                        <h4>EMI Formula:</h4>
+                        <p>EMI = P × r × (1+r)^n / ((1+r)^n - 1)</p>
+                        <p>Where:</p>
+                        <ul style="list-style-type: none; padding-left: 10px;">
+                            <li>P = Principal loan amount</li>
+                            <li>r = Monthly interest rate (annual rate ÷ 12 ÷ 100)</li>
+                            <li>n = Loan tenure in months</li>
+                        </ul>
+                        
+                        <p><strong>Note:</strong> This calculator assumes a fixed interest rate throughout the loan tenure. Actual EMI may vary if your loan has a floating interest rate. Always check with your lender for precise terms and conditions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Calculator Tools. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/dark-mode.js"></script>
+    <script src="../js/calculators/emi-calculator.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play the classic sliding puzzle game online for free.">
+    <meta property="og:title" content="Sliding Puzzle Game - Free Online Game">
+    <meta property="og:description" content="Test your problem-solving skills with this classic sliding puzzle game.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/games/sliding-puzzle.html">
+    <title>Sliding Puzzle - Free Online Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+    <style>
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 5px;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        
+        .puzzle-tile {
+            width: 100%;
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+        
+        .puzzle-tile:hover {
+            opacity: 0.9;
+        }
+        
+        .empty {
+            background-color: transparent;
+            border: 2px dashed var(--border-color);
+            cursor: default;
+        }
+        
+        .empty:hover {
+            opacity: 1;
+        }
+        
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .moves-counter {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Calculator Tools</h1>
+                </a>
+            </div>
+            <nav>
+                <button id="menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="main-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#games">Games</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+                <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="calculator-page">
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-header">
+                        <h2>Sliding Puzzle Game</h2>
+                        <p>Rearrange the tiles to solve the puzzle</p>
+                    </div>
+                    
+                    <div class="game-board" id="puzzle-board"></div>
+                    
+                    <div class="moves-counter">
+                        Moves: <span id="moves-count">0</span>
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button id="new-game-btn" class="btn">New Game</button>
+                        <button id="solve-btn" class="btn">Solve</button>
+                    </div>
+                    
+                    <div class="calculator-info" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                        <h3>About Sliding Puzzle</h3>
+                        <p>The Sliding Puzzle is a classic problem-solving game that has been entertaining and challenging people for generations.</p>
+                        
+                        <h4>How to play:</h4>
+                        <ol>
+                            <li>The puzzle consists of a 4×4 grid with 15 numbered tiles and one empty space</li>
+                            <li>Click any tile adjacent to the empty space to move it into that space</li>
+                            <li>Rearrange the tiles to place them in numerical order (1-15) with the empty space in the bottom right corner</li>
+                            <li>Try to solve the puzzle in as few moves as possible</li>
+                        </ol>
+                        
+                        <h4>Benefits of playing:</h4>
+                        <ul>
+                            <li>Improves problem-solving skills</li>
+                            <li>Enhances spatial awareness</li>
+                            <li>Develops strategic planning abilities</li>
+                            <li>Exercises working memory</li>
+                        </ul>
+                        
+                        <p>The sliding puzzle was invented in the 1870s and has remained a popular brain teaser ever since. The 15-puzzle (4×4) version you're playing has over 10 trillion possible arrangements, but only half of them are actually solvable!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Calculator Tools. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/dark-mode.js"></script>
+    <script src="../js/games/sliding-puzzle.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

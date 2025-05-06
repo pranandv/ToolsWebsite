@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Time your jumps to climb a falling wall or mountain in this climbing adventure game.">
+    <title>Climbing Adventure | Calculator Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+    <style>
+        .game-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        #climbing-canvas {
+            border: 2px solid var(--border-color);
+            background-color: #28386B;
+            max-width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .controls {
+            margin: 20px 0;
+            background-color: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+        }
+        
+        .key {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            margin-right: 5px;
+            font-weight: bold;
+        }
+        
+        .game-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            background-color: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .game-stats div {
+            text-align: center;
+        }
+        
+        .game-stats span {
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        .game-description {
+            text-align: left;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .game-over-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--bg-card);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            text-align: center;
+            min-width: 300px;
+        }
+        
+        .backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 90;
+        }
+        
+        .touch-controls {
+            display: none; /* Hidden by default, shown on mobile */
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .touch-btn {
+            width: 70px;
+            height: 70px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin: 0 10px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .touch-controls {
+                display: flex;
+            }
+            
+            #climbing-canvas {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <i class="fas fa-calculator"></i>
+                    <h1>Calculator Tools</h1>
+                </a>
+            </div>
+            <nav>
+                <button id="menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="main-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#games">Games</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+                <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="game-page">
+            <div class="container">
+                <div class="game-container">
+                    <h2>Climbing Adventure</h2>
+                    <p>Time your jumps perfectly to climb the mountain and avoid falling!</p>
+                    
+                    <div class="game-buttons">
+                        <button id="start-game-btn" class="btn">Start Game</button>
+                        <button id="restart-btn" class="btn">Restart</button>
+                    </div>
+                    
+                    <div class="game-stats">
+                        <div>
+                            <h4>Height</h4>
+                            <span id="height">0m</span>
+                        </div>
+                        <div>
+                            <h4>High Score</h4>
+                            <span id="high-score">0m</span>
+                        </div>
+                    </div>
+                    
+                    <canvas id="climbing-canvas" width="400" height="600"></canvas>
+                    
+                    <div class="touch-controls">
+                        <button id="left-btn" class="touch-btn"><i class="fas fa-arrow-left"></i></button>
+                        <button id="right-btn" class="touch-btn"><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    
+                    <div class="controls">
+                        <h3>Game Controls</h3>
+                        <p><span class="key">←</span> / <span class="key">A</span> - Jump left</p>
+                        <p><span class="key">→</span> / <span class="key">D</span> - Jump right</p>
+                    </div>
+                    
+                    <div class="game-description">
+                        <h3>About Climbing Adventure</h3>
+                        <p>Climbing Adventure is a challenging game where you control a climber who must ascend a mountain by strategically jumping between falling platforms.</p>
+                        
+                        <h4>How to play:</h4>
+                        <ol>
+                            <li>Press "Start Game" to begin</li>
+                            <li>Use the left and right arrow keys (or A and D) to jump between platforms</li>
+                            <li>Time your jumps carefully - the mountain is constantly falling!</li>
+                            <li>Some platforms are unstable and will break after landing on them</li>
+                            <li>The higher you climb, the faster the mountain falls</li>
+                            <li>If you fall off the bottom of the screen, it's game over</li>
+                        </ol>
+                        
+                        <h4>Game features:</h4>
+                        <ul>
+                            <li>Progressive difficulty as you climb higher</li>
+                            <li>Different types of platforms with varying properties</li>
+                            <li>Realistic physics simulation for jumping and falling</li>
+                            <li>High score tracking to challenge yourself</li>
+                            <li>Simple controls with precise movement</li>
+                            <li>Mobile-friendly touch controls for on-the-go play</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <div id="game-over-modal" class="game-over-modal">
+        <h3>Game Over</h3>
+        <p>You reached a height of: <span id="final-height">0m</span></p>
+        <button id="play-again-btn" class="btn">Play Again</button>
+    </div>
+    <div id="backdrop" class="backdrop"></div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Calculator Tools. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/dark-mode.js"></script>
+    <script src="../js/games/climbing-adventure.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

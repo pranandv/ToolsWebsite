@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play the classic Memory Game online for free. Match pairs of cards and test your memory.">
+    <meta property="og:title" content="Memory Game - Free Online Game">
+    <meta property="og:description" content="Play the classic Memory Game online for free. Match pairs of cards and test your memory.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/games/memory-game.html">
+    <title>Memory Game - Free Online Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/dark-mode.css">
+    <style>
+        .memory-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        
+        .card {
+            aspect-ratio: 1/1;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+        
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card-front {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .card-back {
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            border: 2px solid var(--border-color);
+            transform: rotateY(180deg);
+            font-size: 2rem;
+        }
+        
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            max-width: 500px;
+            margin: 0 auto 20px;
+            font-size: 1.2rem;
+        }
+        
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        #game-complete {
+            display: none;
+            background-color: var(--bg-light);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        
+        #game-complete h3 {
+            margin-top: 0;
+        }
+        
+        .difficulty-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .difficulty-btn {
+            background-color: var(--bg-light);
+            border: 2px solid var(--border-color);
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .difficulty-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        @media (max-width: 500px) {
+            .memory-board {
+                grid-gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Calculator Tools</h1>
+                </a>
+            </div>
+            <nav>
+                <button id="menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="main-menu">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#games">Games</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                </ul>
+                <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="calculator-page">
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-header">
+                        <h2>Memory Game</h2>
+                        <p>Match pairs of cards and test your memory</p>
+                    </div>
+                    
+                    <div class="difficulty-selector">
+                        <button class="difficulty-btn active" data-difficulty="easy">Easy</button>
+                        <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+                        <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+                    </div>
+                    
+                    <div class="game-info">
+                        <div>Moves: <span id="moves">0</span></div>
+                        <div>Pairs Found: <span id="pairs">0</span>/<span id="total-pairs">8</span></div>
+                        <div>Time: <span id="timer">00:00</span></div>
+                    </div>
+                    
+                    <div class="memory-board" id="memory-board"></div>
+                    
+                    <div id="game-complete">
+                        <h3>Game Complete!</h3>
+                        <p>You found all pairs in <span id="final-moves">0</span> moves and <span id="final-time">00:00</span>.</p>
+                        <p id="star-rating"></p>
+                    </div>
+                    
+                    <div class="game-controls">
+                        <button id="new-game-btn" class="btn">New Game</button>
+                        <button id="reset-btn" class="btn">Reset Game</button>
+                    </div>
+                    
+                    <div class="calculator-info" style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                        <h3>About Memory Game</h3>
+                        <p>The Memory Game, also known as Concentration or Matching Pairs, is a classic card game that tests and improves your memory.</p>
+                        
+                        <h4>How to play:</h4>
+                        <ol>
+                            <li>Select a difficulty level (Easy, Medium, or Hard)</li>
+                            <li>Click on cards to flip them over and reveal the symbols</li>
+                            <li>Try to find matching pairs of symbols</li>
+                            <li>When you find a match, the cards stay face up</li>
+                            <li>If the cards don't match, they flip back face down</li>
+                            <li>The game is complete when all pairs are found</li>
+                        </ol>
+                        
+                        <h4>Difficulty levels:</h4>
+                        <ul>
+                            <li><strong>Easy:</strong> 4×4 grid (8 pairs)</li>
+                            <li><strong>Medium:</strong> 5×4 grid (10 pairs)</li>
+                            <li><strong>Hard:</strong> 6×4 grid (12 pairs)</li>
+                        </ul>
+                        
+                        <h4>Benefits of playing:</h4>
+                        <ul>
+                            <li>Improves short-term memory and concentration</li>
+                            <li>Enhances visual recognition</li>
+                            <li>Develops faster cognitive processing</li>
+                            <li>Great for children's development and adults' mental exercise</li>
+                        </ul>
+                        
+                        <p>Challenge yourself to complete the game with as few moves as possible!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Calculator Tools. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/dark-mode.js"></script>
+    <script src="../js/games/memory-game.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
